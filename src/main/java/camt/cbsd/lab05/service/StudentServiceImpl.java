@@ -16,6 +16,17 @@ import java.util.List;
 @ConfigurationProperties(prefix = "server")
 @Service
 @JsonIgnoreProperties(ignoreUnknown = true)
+/*
+{
+    Answer 1.3
+    "timestamp": 1508424929599,
+    "status": 400,
+    "error": "Bad Request",
+    "exception": "org.springframework.http.converter.HttpMessageNotReadableException",
+    "message": "JSON parse error: Can not construct instance of camt.cbsd.lab05.entity.Student: no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?); nested exception is com.fasterxml.jackson.databind.JsonMappingException: Can not construct instance of camt.cbsd.lab05.entity.Student: no suitable constructor found, can not deserialize from Object value (missing default constructor or creator, or perhaps need to add/enable type information?)\n at [Source: java.io.PushbackInputStream@760c8cff; line: 2, column: 2]",
+    "path": "/student"
+}
+ */
 public class StudentServiceImpl implements StudentService {
     String imageBaseUrl;
     String baseUrl;
