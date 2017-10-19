@@ -6,9 +6,7 @@ import camt.cbsd.lab05.service.StudentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -37,6 +35,11 @@ public class StudentController {
             //http code 204
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 
+    }
+    @PostMapping("/student")
+    public ResponseEntity<?> uploadOnlyStudent(@RequestBody Student student){
+        System.out.println(student);
+        return ResponseEntity.ok(student);
     }
 
 }

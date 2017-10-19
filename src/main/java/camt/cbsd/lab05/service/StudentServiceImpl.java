@@ -2,6 +2,7 @@ package camt.cbsd.lab05.service;
 
 import camt.cbsd.lab05.dao.StudentDao;
 import camt.cbsd.lab05.entity.Student;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Profile;
@@ -14,6 +15,7 @@ import java.util.List;
 @Profile("firstDataSource")
 @ConfigurationProperties(prefix = "server")
 @Service
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class StudentServiceImpl implements StudentService {
     String imageBaseUrl;
     String baseUrl;
@@ -42,4 +44,6 @@ public class StudentServiceImpl implements StudentService {
     public Student findById(long id) {
         return studentDao.findById(id);
     }
+
+
 }
