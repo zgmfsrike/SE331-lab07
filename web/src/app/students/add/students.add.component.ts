@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {Student} from '../student';
 import {Router} from "@angular/router";
 import {StudentsDataService} from "../../service/students-data.service";
@@ -24,10 +24,21 @@ export class StudentsAddComponent {
 		if (student.penAmount >0)
 			student.penAmount--;
 	}
-
+  @ViewChild('fileInput')inputEl:ElementRef;
 	addStudent(student:Student){
+	  let result : Student;
 	  console.log(student)
-    this.studentDataService.addStudent(student);
+    let inputEl:HTMLInputElement = this.inputEl.nativeElement;
+    this.studentDataService.addStudent(student,inputEl.files.item(0)).subscribe(resultStudent=>{
+      result = resultStudent
+      if(result != null){
+        this.router.navigate(['/list']);
+
+      }else{
+        alert("Error in adding the student")
+      }
+    });
+
 	  alert("Add complete");
     this.router.navigate(['/list']);
   }

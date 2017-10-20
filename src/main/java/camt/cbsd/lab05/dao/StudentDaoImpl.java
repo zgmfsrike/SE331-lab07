@@ -19,6 +19,7 @@ public class StudentDaoImpl implements StudentDao {
     String imageBaseUrl;
     String baseUrl;
     String imageUrl;
+
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
     }
@@ -26,7 +27,8 @@ public class StudentDaoImpl implements StudentDao {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-    public List<Student> getStudents(){
+
+    public List<Student> getStudents() {
         return students;
     }
 
@@ -34,6 +36,19 @@ public class StudentDaoImpl implements StudentDao {
     public Student findById(long id) {
         return students.stream().filter(s -> s.getId() == id).findFirst().orElse(null);
     }
+
+    @Override
+    public Student addStudent(Student student) {
+        student.setImage(this.imageBaseUrl + student.getImage());
+        if (students.add(student)) {
+            return student;
+        } else {
+            return  null;
+
+        }
+
+    }
+
     @PostConstruct
     protected void init(){
         this.imageBaseUrl = this.baseUrl + this.imageUrl;
